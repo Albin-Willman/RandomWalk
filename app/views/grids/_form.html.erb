@@ -1,0 +1,80 @@
+<%= form_for @grid, :html => { :class => "form-horizontal grid" } do |f| %>
+
+    <% if @grid.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@grid.errors.count, "error") %> prohibited this grid from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @grid.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :height, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :height, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:height]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :width, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :width, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:width]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_x, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :start_x, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:start_x]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_y, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :start_y, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:start_y]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :stop_x, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :stop_x, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:stop_x]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :stop_y, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :stop_y, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:stop_y]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :goal_x, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :goal_x, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:goal_x]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :goal_y, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :goal_y, :class => 'form-control' %>
+    </div>
+    <%= error_span(@grid[:goal_y]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            grids_path, :class => 'btn btn-default' %>
+
+<% end %>

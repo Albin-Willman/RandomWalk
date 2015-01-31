@@ -1,0 +1,50 @@
+<%- model_class = Grid -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <dl class="dl-horizontal">
+      <dt><strong><%= model_class.human_attribute_name(:height) %>:</strong></dt>
+      <dd><%= @grid.height %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:width) %>:</strong></dt>
+      <dd><%= @grid.width %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:start_x) %>:</strong></dt>
+      <dd><%= @grid.start_x %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:start_y) %>:</strong></dt>
+      <dd><%= @grid.start_y %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:stop_x) %>:</strong></dt>
+      <dd><%= @grid.stop_x %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:stop_y) %>:</strong></dt>
+      <dd><%= @grid.stop_y %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:goal_x) %>:</strong></dt>
+      <dd><%= @grid.goal_x %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:goal_y) %>:</strong></dt>
+      <dd><%= @grid.goal_y %></dd>
+    </dl>
+  </div>
+  <div class="col-md-6">
+    <table class="grid">
+      <tbody>
+        <% @grid.height.times do |i| %>
+          <tr>
+            <% @grid.width.times do |j| %>
+              <td class="<%= slot_class(@grid, j, i) %>"></td>
+            <% end %>
+          </tr>
+        <% end  %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              grids_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_grid_path(@grid), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              grid_path(@grid),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

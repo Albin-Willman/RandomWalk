@@ -53,7 +53,6 @@ group :development do
   gem 'awesome_print'
   gem 'simplecov' # For testing
   gem 'quiet_assets'
-  gem 'wayback_archiver'
   gem 'bullet' # detects common sql query mistakes
   gem 'brakeman', require: false # Finds common Rails security vulnerability
   gem 'ruby-prof' # , git: 'git://github.com/wycats/ruby-prof.git' # See better profiling information together with new_relic gem

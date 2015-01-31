@@ -1,0 +1,50 @@
+<%- model_class = Grid -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:height) %></th>
+      <th><%= model_class.human_attribute_name(:width) %></th>
+      <th><%= model_class.human_attribute_name(:start_x) %></th>
+      <th><%= model_class.human_attribute_name(:start_y) %></th>
+      <th><%= model_class.human_attribute_name(:stop_x) %></th>
+      <th><%= model_class.human_attribute_name(:stop_y) %></th>
+      <th><%= model_class.human_attribute_name(:goal_x) %></th>
+      <th><%= model_class.human_attribute_name(:goal_y) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grids.each do |grid| %>
+      <tr>
+        <td><%= link_to grid.id, grid_path(grid) %></td>
+        <td><%= grid.height %></td>
+        <td><%= grid.width %></td>
+        <td><%= grid.start_x %></td>
+        <td><%= grid.start_y %></td>
+        <td><%= grid.stop_x %></td>
+        <td><%= grid.stop_y %></td>
+        <td><%= grid.goal_x %></td>
+        <td><%= grid.goal_y %></td>
+        <td><%=l grid.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_grid_path(grid), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      grid_path(grid),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_grid_path,
+            :class => 'btn btn-primary' %>
