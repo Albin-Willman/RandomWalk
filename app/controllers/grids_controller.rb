@@ -1,5 +1,5 @@
 class GridsController < ApplicationController
-  before_action :set_grid, only: [:show, :edit, :move, :update, :destroy]
+  before_action :set_grid, only: [:show, :edit, :move, :reset, :update, :destroy]
 
   # GET /grids
   def index
@@ -22,6 +22,14 @@ class GridsController < ApplicationController
   def move
     @grid.take_step!
     redirect_to(grid_path(@grid, auto: params[:auto]))
+  end
+
+  def reset
+    @grid.pos_x = @grid.start_x
+    @grid.pos_y = @grid.start_y
+    @grid.step  = 0
+    @grid.save
+    redirect_to(grid_path(@grid))
   end
 
   # POST /grids

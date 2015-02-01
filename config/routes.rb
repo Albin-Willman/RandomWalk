@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :grids do
     member do
       patch :move
+      patch :reset
     end
   end
 

@@ -66,6 +66,11 @@
                 method: 'patch',
                 class: 'btn btn-default',
                 id: 'js-auto-button' %>
+  <% else %>
+    <%= link_to 'Reset',
+                reset_grid_path(@grid, auto: true),
+                method: 'patch',
+                class: 'btn btn-default' %>
   <% end %>
 <% end %>
 
@@ -74,7 +79,7 @@
     <script>
     setInterval(function () {
       $('#js-auto-button').click();
-    }, 3000);
+    }, 500);
     </script>
   <% end %>
 <% end %>
