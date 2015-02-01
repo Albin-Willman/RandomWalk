@@ -2,10 +2,10 @@ class Grid < ActiveRecord::Base
 
   def take_step!
     return if finished
-    direction = rand(2) == 1 ? 'x' : 'y'
-    data = axis_data(direction)
-    send("pos_#{direction}=", select_next_pos(data))
-    step = (step || 0) + 1
+    possible_moves = find_possible_moves
+    move = possible_moves[rand(possible_moves.length)]
+    make_move(move)
+    self.step = (step || 0) + 1
     save
   end
 
@@ -15,19 +15,17 @@ class Grid < ActiveRecord::Base
 
   private
 
-  def select_next_pos(data)
-    return data[:lower_limit] + 1 if data[:lower_limit] == data[:pos]
-    return data[:upper_limit] - 1 if data[:upper_limit] == data[:pos]
-    data[:pos] + rand(2)*2 - 1
+  def make_move(move)
+    send("pos_#{move[:direction]}=", move[:pos])
   end
 
-  def axis_data(axis)
-    upper_limit = axis == 'x' ? width : height
-    {
-      lower_limit: 0,
-      upper_limit: upper_limit-1,
-      pos: send("pos_#{axis}")
-    }
+  def find_possible_moves
+    moves = []
+    moves << { direction: 'x', pos: pos_x - 1 } unless pos_x == 0
+    moves << { direction: 'x', pos: pos_x + 1 } unless pos_x + 1 == width
+    moves << { direction: 'y', pos: pos_y - 1 } unless pos_y == 0
+    moves << { direction: 'y', pos: pos_y + 1 } unless pos_y + 1 == height
+    moves
   end
 
 end

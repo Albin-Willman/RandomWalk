@@ -21,7 +21,7 @@ class GridsController < ApplicationController
 
   def move
     @grid.take_step!
-    redirect_to @grid
+    redirect_to(grid_path(@grid, auto: params[:auto]))
   end
 
   # POST /grids
