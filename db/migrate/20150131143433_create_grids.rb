@@ -9,6 +9,9 @@ class CreateGrids < ActiveRecord::Migration
       t.integer :stop_y
       t.integer :goal_x
       t.integer :goal_y
+      t.integer :pos_x
+      t.integer :pos_y
+      t.integer :step
 
       t.timestamps null: false
     end

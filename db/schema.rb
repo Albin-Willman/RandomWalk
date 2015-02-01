@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20150131143433) do
     t.integer  "stop_y",     limit: 4
     t.integer  "goal_x",     limit: 4
     t.integer  "goal_y",     limit: 4
+    t.integer  "pos_x",      limit: 4
+    t.integer  "pos_y",      limit: 4
+    t.integer  "step",       limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

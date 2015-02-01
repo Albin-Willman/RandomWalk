@@ -1,5 +1,5 @@
 class GridsController < ApplicationController
-  before_action :set_grid, only: [:show, :edit, :update, :destroy]
+  before_action :set_grid, only: [:show, :edit, :move, :update, :destroy]
 
   # GET /grids
   def index
@@ -19,9 +19,16 @@ class GridsController < ApplicationController
   def edit
   end
 
+  def move
+    @grid.take_step!
+    redirect_to @grid
+  end
+
   # POST /grids
   def create
     @grid = Grid.new(grid_params)
+    @grid.pos_x = @grid.start_x
+    @grid.pos_y = @grid.start_y
 
     if @grid.save
       redirect_to @grid, notice: 'Grid was successfully created.'
